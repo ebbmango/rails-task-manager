@@ -5,3 +5,20 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+require 'faker'
+
+AMOUNT = 10
+
+puts "Filling the database with #{AMOUNT} new tasks..."
+
+AMOUNT.times do
+  task = Task.new(
+    title: "#{Faker::Verb.base.capitalize} the #{Faker::House.room}'s #{Faker::House.furniture}.",
+    details: Faker::Lorem.paragraphs(number: 1).first,
+    completed: false
+  )
+  task.save!
+end
+
+puts 'Done!'
